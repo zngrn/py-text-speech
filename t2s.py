@@ -44,7 +44,7 @@ def bot_listen():
         if not 'exit' in query or 'stop' in query:
             bot_speak(choice(working_on_it))
         else:
-            print('Didn\'t comprehend...')
+            print('If that\'s all, I\'ll take a bow...')
             exit()
     except Exception as e:
         print(e)

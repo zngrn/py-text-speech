@@ -4,7 +4,8 @@ working_on_it = [
   'Working on it!',
   'Just a moment Sir!',
   'On the jiffy Sir!',
-  'Right away Sir!'
+  'Right away Sir!',
+  'Very well Sir!'
 ]
 
 apologies = [
