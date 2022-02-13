@@ -1,6 +1,9 @@
 import pyttsx3
+import speech_recognition
 from decouple import config
 from datetime import datetime
+from random import choice
+from utils import working_on_it, apologies
 
 USER = config('USER')
 BOT = config('BOT')
@@ -27,6 +30,27 @@ def bot_greet():
     elif current_hour in range(16, 21):
         bot_speak(f"Good evening! {USER}")
     bot_speak(f"I'm {BOT}. How can I be of assistance?")
+
+def bot_listen():
+    r = speech_recognition.Recognizer()
+    with speech_recognition.Microphone() as source:
+        print('Listening...')
+        r.pause_threshold = 2
+        audio = r.listen(source)
+    
+    try:
+        print('Analysing and recognizing audio input...')
+        query = r.recognize_google(audio, language='en-in')
+        if not 'exit' in query or 'stop' in query:
+            bot_speak(choice(working_on_it))
+        else:
+            print('Didn\'t comprehend...')
+            exit()
+    except Exception as e:
+        print(e)
+        bot_speak(choice(apologies))
+        query = 'None'
+    return query 
 
 
 if __name__ == "__main__":
