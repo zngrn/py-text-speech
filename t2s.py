@@ -35,7 +35,7 @@ def bot_listen():
     r = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as source:
         print('Listening...')
-        r.pause_threshold = 2
+        r.pause_threshold = 1
         audio = r.listen(source)
     
     try:
@@ -44,7 +44,7 @@ def bot_listen():
         if not 'exit' in query or 'stop' in query:
             bot_speak(choice(working_on_it))
         else:
-            print('If that\'s all, I\'ll take a bow...')
+            bot_speak('If that\'s all, I\'ll take a bow...')
             exit()
     except Exception as e:
         print(e)
@@ -54,5 +54,8 @@ def bot_listen():
 
 
 if __name__ == "__main__":
-    bot_speak('Hello! I am Cosmo!')
+    bot_speak('Hello!')
     bot_greet()
+    while True:
+        query = bot_listen().lower()
+        print(query)
